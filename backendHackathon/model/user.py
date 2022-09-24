@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, DateTime
+from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
 from model import Base
 from datetime import datetime
 
@@ -12,3 +12,4 @@ class User(Base):
     localizacao_lat = Column(Integer(), nullable=True)
     localizacao_lon = Column(Integer(), nullable=True)
     created_on = Column(DateTime(), default=datetime.now, nullable=False)
+    team = Column(Integer(), ForeignKey('team.id'), nullable=True)
