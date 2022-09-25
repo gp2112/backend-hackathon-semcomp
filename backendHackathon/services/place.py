@@ -32,7 +32,7 @@ def insert_place(lat: float, lon: float, name: str,
 def close_places(user, radius: float, dt: int, team: str):
     places = []
     with Session(engine) as session:
-        places = session.query(PlaceMatch).join(Place).join(Match).filter(
+        places = session.query(PlaceMatch).join([PlaceMatch.lat, PlaceMatch.lon] == [Place.lat, Place.lon]).join(Match).filter(
                                                         Place.uf == user.uf and
                                                         Place.city == user.city and
                                                         Match.team_a == team and

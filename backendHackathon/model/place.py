@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String, Integer, Float,  \
         ForeignKey, DateTime
 from model import Base
+from model.placeMatch import PlaceMatch
 from datetime import datetime
+from sqlalchemy.orm import relationship
 
 
 class Place(Base):
@@ -29,4 +31,3 @@ class Place(Base):
                 'uf': self.uf,
                 'city': self.city
             }
-

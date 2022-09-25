@@ -27,6 +27,3 @@ def create():
                 place.get('description'),
             )
     return {"code": 200, "message": "success"}
-
-
-

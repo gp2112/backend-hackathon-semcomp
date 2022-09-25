@@ -8,3 +8,4 @@ class Match(Base):
     team_a = Column(Integer(), index=True)
     team_b = Column(Integer(), ForeignKey('team.id'), index=True)
     starts_on = Column(DateTime(), nullable=False, index=True)
+

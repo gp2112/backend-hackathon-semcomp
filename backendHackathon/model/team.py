@@ -1,5 +1,7 @@
 from sqlalchemy import Column, String, Integer
+from sqlalchemy.orm import relationship
 from model import Base
+from model.match_ import Match
 
 
 class Team(Base):
@@ -9,6 +11,8 @@ class Team(Base):
     uf = Column(String(2))
     logo = Column(String(100), nullable=False)  # url
     sport = Column(String(20), nullable=False)
+
+    matches = relationship('Match')
 
     def toDict(self):
         return {

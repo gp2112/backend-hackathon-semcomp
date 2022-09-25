@@ -11,5 +11,7 @@ class User(Base):
     email = Column(String(100), nullable=False)
     localizacao_lat = Column(Float(), nullable=True)
     localizacao_lon = Column(Float(), nullable=True)
+    uf = Column(String(2), nullable=True)
+    city = Column(String(30), nullable=True)
     created_on = Column(DateTime(), default=datetime.now, nullable=False)
     team = Column(Integer(), ForeignKey('team.id'), nullable=True)
