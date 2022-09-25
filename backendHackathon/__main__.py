@@ -1,13 +1,18 @@
 from tests import testdb
 from model import engine, Base
 from flask import Flask
+
+from controller.place import place_bp
+
 import sys
 
-if '--test' in sys.argv:
+if '--testdb' in sys.argv:
     Base.metadata.create_all(engine)
     testdb.testall()
 
 app = Flask(__name__)
+
+app.register_blueprint(place_bp, url_prefix='/place')
 
 
 @app.get('/')
@@ -15,9 +20,6 @@ def root():
     return 'Hello'
 
 
-def main():
-    app.run()
+app.run()
 
 
-if __name__ == '__main__':
-    main()

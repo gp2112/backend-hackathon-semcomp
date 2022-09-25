@@ -24,7 +24,9 @@ def testInsertUser():
                 username='gp2112',
                 name='Guilherme',
                 password='dmeko3djio3jdie',
-                email='me@guip.dev'
+                email='me@guip.dev',
+                localizacao_lat=27364.1,
+                localizacao_lon=27384.2
             )
         session.add(user)
         session.commit()
@@ -36,7 +38,10 @@ def testInsertPlace():
                 lat=7653846,
                 lon=9374989,
                 address='av. prof. murtinho 999, sao paulo, sp',
-                created_by='gp2112'
+                created_by='gp2112',
+                name='bar do guip',
+                city="Rio de Janeiro",
+                uf="rj"
             )
         session.add(place)
         session.commit()
