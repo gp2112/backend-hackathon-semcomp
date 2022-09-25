@@ -10,6 +10,7 @@ def get_place(lat: float, lon: float) -> dict:
         place = session.query(Place).get((lat, lon))
         return place.toDict()
 
+
 def insert_place(lat: float, lon: float, name: str,
                  address: str, uf: str, city: str, created_by: str,
                  description: str = None):
@@ -28,19 +29,16 @@ def insert_place(lat: float, lon: float, name: str,
         session.commit()
 
 
-def insideRadius(p):
-        (p.lat-user.localizacao_lat)**2 + (p.laon-user.localizacao_lon)**2 <= radius
-
-
-def close_places(user, radius):
+def close_places(user, radius: float, dt: int, team: str):
     places = []
     with Session(engine) as session:
         places = session.query(PlaceMatch).join(Place).join(Match).filter(
                                                         Place.uf == user.uf and
-                                                        Place.city == user.city).all()
+                                                        Place.city == user.city and
+                                                        Match.team_a == team and
+                                                        Match.datetime >= dt).all()
 
-    
-    places = filter(insideRadius, places)
-    for i, p in enumerate(places):
-        places[i] = p.toDict()
-    return places
+    iR = lambda p: (p.lat-user.localizacao_lat)**2 + (p.lon-user.localizacao_lon)**2 <= radius
+
+    places = filter(iR, places)
+    return [p.toDict() for p in places]

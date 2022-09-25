@@ -9,3 +9,12 @@ class Team(Base):
     uf = Column(String(2))
     logo = Column(String(100), nullable=False)  # url
     sport = Column(String(20), nullable=False)
+
+    def toDict(self):
+        return {
+                'id': self.id,
+                'name': self.name,
+                'uf': self.uf,
+                'logo': self.logo,
+                'sport': self.sport
+            }

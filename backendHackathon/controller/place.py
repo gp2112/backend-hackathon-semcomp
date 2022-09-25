@@ -29,10 +29,4 @@ def create():
     return {"code": 200, "message": "success"}
 
 
-@place_bp.get('/close')
-def search():
-    username = request.args.get('username')
-    radius = float(request.args.get('radius', 0))
-    user = get_user(username)
-    print(user.localizacao_lat, user.localizacao_lon)
-    return close_places(user.localizacao_lat, user.localizacao_lon, radius)
+
